@@ -83,5 +83,16 @@ RSpec.describe Carnival do
       expect(@carnival.summary_hash[:visitor_count]).to eq(3)
       expect(@carnival.summary_hash[:revenue_earned]).to eq(@carnival.all_total_revenue)
     end
+
+    it 'adds list of visitors, each visitors favorite ride, and total money visitor spent' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      @carnival.create_summary_hash
+
+      expect(@carnival.summary_hash[:visitors][:visitor1][:favorite_ride]).to eq(@ride1)
+      expect(@carnival.summary_hash[:visitors][:visitor2][:total_money_spent]).to eq(1)
+    end
   end
 end
