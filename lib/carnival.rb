@@ -1,8 +1,9 @@
 class Carnival
   attr_reader :name, :all_rides, :summary_hash
 
-  def initialize(name)
+  def initialize(name, duration)
     @name = name
+    @duration = duration
     @all_rides = []
     @summary_hash = {}
     @all_visitors = []

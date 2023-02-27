@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Carnival do
   before(:each) do
-    @carnival = Carnival.new('Boulder County Fair')
+    @carnival = Carnival.new('Boulder County Fair', 'April 7th, 2011 - April 12th, 2011')
     @ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
     @ride2 = Ride.new({ name: 'Ferris Wheel', min_height: 36, admission_fee: 5, excitement: :gentle })
     @ride3 = Ride.new({ name: 'Roller Coaster', min_height: 54, admission_fee: 2, excitement: :thrilling })
