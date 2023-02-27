@@ -34,10 +34,6 @@ RSpec.describe Ride do
     end
 
     it 'will not board riders without preference or height requirements' do
-      @ride1.board_rider(@visitor1)
-      @ride1.board_rider(@visitor2)
-      @ride1.board_rider(@visitor1)
-
       @ride3.board_rider(@visitor1)
       @ride3.board_rider(@visitor2)
       @ride3.board_rider(@visitor3)
