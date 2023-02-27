@@ -71,4 +71,15 @@ RSpec.describe Carnival do
       expect(@carnival.all_total_revenue).to eq(12)
     end
   end
+
+  describe '#Iteration 4 - summary hash' do
+    it 'creates hash that includes visitor count and revenue earned' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      expect(@carnival.summary_hash[:visitor_count]).to eq(3)
+      expect(@carnival.summary_hash[:revenue_earned]).to eq(@carnival.all_total_revenue)
+    end
+  end
 end
