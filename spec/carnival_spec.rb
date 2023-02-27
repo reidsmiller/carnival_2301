@@ -103,5 +103,16 @@ RSpec.describe Carnival do
       expect(@carnival.summary_hash[:visitors]["Bruce"][:favorite_ride]).to eq('Carousel')
       expect(@carnival.summary_hash[:visitors]["Tucker"][:total_money_spent]).to eq(1)
     end
+
+    it 'can add list of rides and who rode each ride with rides total revenue' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      @carnival.create_summary_hash
+
+      expect(@carnival.summary_hash[:rides]['Carousel'][:rider_log]).to eq(@ride1.rider_log)
+      expect(@carnival.summary_hash[:rides]['Roller Coaster'][:total_revenue]).to eq(4)
+    end
   end
 end

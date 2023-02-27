@@ -45,9 +45,23 @@ class Carnival
     }
   end
 
+  def create_ride_hash
+    @all_rides.to_h do |ride|
+      [ride.name, create_ride_stats(ride)]
+    end
+  end
+
+  def create_ride_stats(ride)
+    ride_stats = {
+      rider_log: ride.rider_log,
+      total_revenue: ride.total_revenue
+    }
+  end
+
   def create_summary_hash
     @summary_hash[:visitor_count] = visitor_count
     @summary_hash[:revenue_earned] = all_total_revenue
     @summary_hash[:visitors] = create_visitor_hash
+    @summary_hash[:rides] = create_ride_hash
   end
 end
