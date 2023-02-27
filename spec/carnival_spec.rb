@@ -18,8 +18,15 @@ RSpec.describe Carnival do
   describe '#iteration 3 - Carnival' do
     it 'can instantiate new class' do
       expect(@carnival.name).to eq('Boulder County Fair')
+      expect(@carvival.rides).to eq([])
     end
 
-    
+    it 'can add rides' do
+      @carvival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      expect(@carnival.rides).to eq([@ride1, @ride2, @ride3])
+    end
   end
 end
