@@ -13,9 +13,11 @@ class Ride
 
   def board_rider(visitor)
     if requirement_check(visitor)
-      visitor.spending_money = visitor.spending_money - @admission_fee
-      @total_revenue = @total_revenue + @admission_fee
+      visitor.spending_money -= @admission_fee
+      visitor.total_money_spent += @admission_fee 
+      @total_revenue += @admission_fee
       @total_rides += 1
+      visitor.rides_ridden << @name
       if @rider_log.include?(visitor)
         @rider_log[visitor] += 1
       else

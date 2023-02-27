@@ -5,6 +5,7 @@ class Carnival
     @name = name
     @all_rides = []
     @summary_hash = {}
+    @all_visitors = []
   end
 
   def add_ride(ride)
@@ -24,16 +25,29 @@ class Carnival
   end
 
   def visitor_count
-    all_visitors = []
     @all_rides.each do |ride|
-      ride.rider_log.each {|visitor| all_visitors << visitor}
+      ride.rider_log.each {|visitor| @all_visitors << visitor}
     end
-    all_visitors.uniq!
-    all_visitors.length
+    @all_visitors.uniq!
+    @all_visitors.length
+  end
+
+  def create_visitor_hash
+    @all_visitors.to_h do |visitor|
+      [visitor[0].name, create_visitor_stats(visitor[0])]
+    end
+  end
+
+  def create_visitor_stats(visitor)
+    visitor_stats = {
+      favorite_ride: visitor.favorite_ride,
+      total_money_spent: visitor.total_money_spent
+    }
   end
 
   def create_summary_hash
     @summary_hash[:visitor_count] = visitor_count
     @summary_hash[:revenue_earned] = all_total_revenue
+    @summary_hash[:visitors] = create_visitor_hash
   end
 end
