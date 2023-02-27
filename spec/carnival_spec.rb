@@ -71,4 +71,48 @@ RSpec.describe Carnival do
       expect(@carnival.all_total_revenue).to eq(12)
     end
   end
+
+  describe '#Iteration 4 - summary hash' do
+    it 'creates hash that includes visitor count and revenue earned' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      @carnival.create_summary_hash
+
+      expect(@carnival.summary_hash[:visitor_count]).to eq(3)
+      expect(@carnival.summary_hash[:revenue_earned]).to eq(@carnival.all_total_revenue)
+    end
+
+    it 'can generate a visitors favorite ride' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      @ride2.board_rider(@visitor1)
+      expect(@visitor1.favorite_ride).to eq('Carousel')
+    end
+
+    it 'adds list of visitors, each visitors favorite ride, and total money visitor spent' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      @carnival.create_summary_hash
+     
+      expect(@carnival.summary_hash[:visitors]["Bruce"][:favorite_ride]).to eq('Carousel')
+      expect(@carnival.summary_hash[:visitors]["Tucker"][:total_money_spent]).to eq(1)
+    end
+
+    it 'can add list of rides and who rode each ride with rides total revenue' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
+      @carnival.create_summary_hash
+
+      expect(@carnival.summary_hash[:rides]['Carousel'][:rider_log]).to eq(@ride1.rider_log)
+      expect(@carnival.summary_hash[:rides]['Roller Coaster'][:total_revenue]).to eq(4)
+    end
+  end
 end
