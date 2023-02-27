@@ -78,6 +78,8 @@ RSpec.describe Carnival do
       @carnival.add_ride(@ride2)
       @carnival.add_ride(@ride3)
 
+      @carnival.create_summary_hash
+
       expect(@carnival.summary_hash[:visitor_count]).to eq(3)
       expect(@carnival.summary_hash[:revenue_earned]).to eq(@carnival.all_total_revenue)
     end
