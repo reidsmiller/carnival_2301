@@ -35,6 +35,10 @@ RSpec.describe Carnival do
     end
 
     it 'can tell us most popular ride' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
       expect(@carnival.most_popular).to eq(@ride1)
 
       @ride3.board_rider(@visitor3)
@@ -44,14 +48,22 @@ RSpec.describe Carnival do
     end
 
     it 'can tell us most profitable ride' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
       expect(@carnival.most_profitable).to eq(@ride3)
 
       @ride2.board_rider(@visitor1)
 
-      expect(@carnival.most_profitable).to eq(ride2)
+      expect(@carnival.most_profitable).to eq(@ride2)
     end
 
     it 'can calculate total revenue from all rides' do
+      @carnival.add_ride(@ride1)
+      @carnival.add_ride(@ride2)
+      @carnival.add_ride(@ride3)
+
       expect(@carnival.all_total_revenue).to eq(7)
 
       @ride2.board_rider(@visitor1)
