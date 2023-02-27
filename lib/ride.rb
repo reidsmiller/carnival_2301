@@ -11,12 +11,17 @@ class Ride
   end
 
   def board_rider(visitor)
-    visitor.spending_money = visitor.spending_money - @admission_fee
-    if @rider_log.include?(visitor)
-      @rider_log[visitor] += 1
-    else
-      @rider_log[visitor] = 1
+    if requirement_check(visitor)
+      visitor.spending_money = visitor.spending_money - @admission_fee
+      if @rider_log.include?(visitor)
+        @rider_log[visitor] += 1
+      else
+        @rider_log[visitor] = 1
+      end
     end
   end
 
+  def requirement_check(visitor)
+    true if visitor.preferences.include?(@excitement) && visitor.tall_enough?(@min_height) && visitor.spending_money >= @admission_fee
+  end
 end
