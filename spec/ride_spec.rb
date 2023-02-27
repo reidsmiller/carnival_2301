@@ -24,7 +24,7 @@ RSpec.describe Ride do
     end
 
     it 'can board riders' do
-      expect(@ride1.rider_log).to eq([])
+      expect(@ride1.rider_log).to eq({})
       @ride1.board_rider(@visitor1)
       @ride1.board_rider(@visitor2)
       @ride1.board_rider(@visitor1)
